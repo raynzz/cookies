@@ -50,6 +50,33 @@ export default class Game {
     setupInputs() {
         window.addEventListener('keydown', (e) => this.player.handleInput(e.key, true));
         window.addEventListener('keyup', (e) => this.player.handleInput(e.key, false));
+
+        // Mobile Touch Controls
+        const buttons = document.querySelectorAll('.control-btn');
+        buttons.forEach(btn => {
+            const key = btn.dataset.key;
+            
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault(); // Prevent scrolling/zooming
+                this.player.handleInput(key, true);
+            }, { passive: false });
+
+            btn.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                this.player.handleInput(key, false);
+            }, { passive: false });
+
+            // Handle mouse events for testing on desktop without touch
+            btn.addEventListener('mousedown', (e) => {
+                this.player.handleInput(key, true);
+            });
+            btn.addEventListener('mouseup', (e) => {
+                this.player.handleInput(key, false);
+            });
+            btn.addEventListener('mouseleave', (e) => {
+                this.player.handleInput(key, false);
+            });
+        });
     }
 
     resetGame() {

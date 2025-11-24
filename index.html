@@ -91,6 +91,70 @@
     .hidden {
       display: none !important;
     }
+
+    /* Mobile Controls */
+    #mobile-controls {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      height: 150px;
+      pointer-events: none;
+      z-index: 15;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .control-group {
+      pointer-events: auto;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .d-pad {
+      display: grid;
+      grid-template-columns: repeat(3, 60px);
+      grid-template-rows: repeat(2, 60px);
+      gap: 5px;
+    }
+
+    .control-btn {
+      width: 60px;
+      height: 60px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 170, 0, 0.5);
+      border-radius: 50%;
+      color: rgba(255, 170, 0, 0.8);
+      font-size: 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .control-btn:active {
+      background: rgba(255, 170, 0, 0.4);
+      transform: scale(0.95);
+    }
+
+    .shoot-btn {
+      width: 80px;
+      height: 80px;
+      border-color: rgba(255, 0, 85, 0.5);
+      color: rgba(255, 0, 85, 0.8);
+    }
+
+    .shoot-btn:active {
+      background: rgba(255, 0, 85, 0.4);
+    }
+
+    /* Hide on desktop if desired, but keeping visible for now as requested */
+    @media (min-width: 1024px) {
+      /* #mobile-controls { display: none; } */
+    }
   </style>
 </head>
 
@@ -99,6 +163,18 @@
     <div id="score" class="hud-text">COOKIES: 0 / 15</div>
     <div id="level" class="hud-text">LEVEL: 1</div>
     <div id="health" class="hud-text" style="color: #ff0055;">❤️❤️❤️</div>
+  </div>
+
+  <div id="mobile-controls">
+    <div class="control-group d-pad">
+      <div style="grid-column: 2; grid-row: 1;" class="control-btn" data-key="ArrowUp">▲</div>
+      <div style="grid-column: 1; grid-row: 2;" class="control-btn" data-key="ArrowLeft">◀</div>
+      <div style="grid-column: 2; grid-row: 2;" class="control-btn" data-key="ArrowDown">▼</div>
+      <div style="grid-column: 3; grid-row: 2;" class="control-btn" data-key="ArrowRight">▶</div>
+    </div>
+    <div class="control-group">
+      <div class="control-btn shoot-btn" data-key=" ">🔥</div>
+    </div>
   </div>
 
   <div id="menu-overlay"
