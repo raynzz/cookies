@@ -4,8 +4,9 @@ export default class Player {
         this.y = y;
         this.vx = 0;
         this.vy = 0;
-        this.speed = 400;
-        this.friction = 0.90;
+        this.sensitivityMultiplier = 1.2; // Configurable sensitivity
+        this.speed = 400 * this.sensitivityMultiplier;
+        this.friction = 0.85; // Reduced friction for snappier control
         this.width = 40; // Hitbox size
         this.height = 40;
 
